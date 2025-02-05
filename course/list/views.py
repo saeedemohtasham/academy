@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse
+import requests
 # Create your views here.
 clas_list=[
     {'id':1,'name':'python','time_in':'14:30','time_out':'15'},
@@ -18,11 +19,21 @@ def show_list(request):
 
 def course_list(request):
     return render (request,'list/list.html')
+def detail(request,name):
+    return HttpResponse(f"class list:{name}")
 
-def search(request,name):
+def filter(request,name):
     data=""
     for item in clas_list:
         if name in item['name']:
-            url=reverse('list',args=[item['name']])
-            data= data+ f"<a href='{url}', target='_blank'> {item['name']}</a>" + "<br>"
-            HttpResponse(data)
+            url=reverse('detail',args=[item['name']])
+            data= data +f"<a href='{url}' target='_blank'> {item['name']}</a>" + "<br>"
+    return HttpResponse(data)
+def detail2 (request):
+    id=request.GET.get('id')
+    for item in clas_list:
+        if id==item['id']:
+            return render (request,'list/list.html')
+        else:
+            return render(request,'list/eror.html')
+
