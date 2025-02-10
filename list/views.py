@@ -18,7 +18,8 @@ def show_list(request):
     return HttpResponse(data)
 
 def course_list(request):
-    return render (request,'list/list.html')
+    context={'filter':clas_list}
+    return render (request,'list/list2.html',context=context)
 def detail(request,name):
     return HttpResponse(f"class list:{name}")
 
@@ -30,10 +31,21 @@ def filter(request,name):
             data= data +f"<a href='{url}' target='_blank'> {item['name']}</a>" + "<br>"
     return HttpResponse(data)
 def detail2 (request):
+    f_list=[]
     id=request.GET.get('id')
+    id=int(id)
     for item in clas_list:
         if id==item['id']:
-            return render (request,'list/list.html')
-        else:
-            return render(request,'list/eror.html')
+            f_list.append(item)
+            context={"filter":f_list}
+            return render (request,'list/list2.html',context=context)
+    else:
+        return render(request,'list/eror.html')
 
+def search(request,name):
+    filter_list=[]
+    for item in clas_list:
+        if name in item['name']:
+            filter_list.append(item)
+    context={'filter':filter_list}
+    return render(request,'list/list2.html',context=context)

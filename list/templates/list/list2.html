@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <center>
+        <table width="60%">
+            {% for item in filter%}
+                {% if forloop.counter0|divisibleby:"3" %}
+                    <tr>
+                {% endif %}
+                        <td width="33%">
+                            <div class="box">
+                                <p>{{item.name}}</p>
+
+                            </div>
+                        </td>
+                {% if forloop.counter|divisibleby:"3" %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </center>
+
+{% endblock %}
+{% block title %}
+لیست دوره
+{% endblock %}
