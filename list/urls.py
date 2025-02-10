@@ -5,5 +5,6 @@ urlpatterns = [
     path('course-list',views.course_list,name="list"),
     path('filter/<name>', views.filter),
     path('detail/<name>',views.detail, name="detail"),
-    path('detail2')
+    path('detail2',views.detail2),
+    path('search/<name>',views.search),
 ]

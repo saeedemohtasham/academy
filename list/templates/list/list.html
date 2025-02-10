@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> لیست دوره ها</title>
+        
+    </head>
+    <body>
+        <center>
+            <table width="60%">
+                {% for item in filter%}
+                    {% if forloop.counter0|divisibleby:"3" %}
+                        <tr>
+                    {%endif%}
+                            <td width="33%">
+                                <div style="margin: 0px 20px background-color: rgba(0,0,0,0.6)">
+                                    <p>{{item.name}}</p>
+
+                                </div>
+                            </td>
+                    {% if forloop.counter|divisibleby:"3" %}
+                        </tr>
+                    {%endif%}
+                {%endfor%}
+            </table>
+        </center>
+
+           
+    </body>
+
+
+
+
+</html>
