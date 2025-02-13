@@ -3,16 +3,15 @@
     <center>
         <table width="60%">
             {% for item in filter%}
-                {% if forloop.counter0|divisibleby:"3" %}
+                {% if forloop.counter0|divisibleby:"2" %}
                     <tr>
                 {% endif %}
                         <td width="33%">
-                            <div class="box">
-                                <p>{{item.name}}</p>
-
+                            <div class="box" >
+                                <a href="{% url 'clas-detail' item.name %}">{{item.name}}</a>
                             </div>
                         </td>
-                {% if forloop.counter|divisibleby:"3" %}
+                {% if forloop.counter|divisibleby:"2" %}
                     </tr>
                 {% endif %}
             {% endfor %}

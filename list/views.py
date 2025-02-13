@@ -4,10 +4,10 @@ from django.urls import reverse
 import requests
 # Create your views here.
 clas_list=[
-    {'id':1,'name':'python','time_in':'14:30','time_out':'15'},
-    {'id':2,'name':'django','time_in':'17:30','time_out':'19'},
-    {'id':3,'name':'icdl','time_in':'16:30','time_out':'18'},
-    {'id':4,'name':'hoosh','time_in':'16','time_out':'17:30'}
+    {'id':1,'name':'پایتون','time_in':'14:30','time_out':'15','description':'استاد: آقای احمدی، روزهای برگزاری :شنبه و دوشنبه'},
+    {'id':2,'name':'جنگو','time_in':'17:30','time_out':'19','description':'استاد: آقای رسولی، روزهای برگزاری :دوشنبه و چهارشنبه',},
+    {'id':3,'name':'icdl','time_in':'16:30','time_out':'18','description':'استاد: آقای نیازی، روزهای برگزاری :سه شنبه و پنج شنبه'},
+    {'id':4,'name':'هوش مصنوعی','time_in':'16','time_out':'17:30','description':'استاد: خانم امیری، روزهای برگزاری :شنبه و چهارشنبه',}
 ]
     
 def show_list(request):
@@ -49,3 +49,23 @@ def search(request,name):
             filter_list.append(item)
     context={'filter':filter_list}
     return render(request,'list/list2.html',context=context)
+#exercise 8
+def clas_detail(request,name):
+    f_list=[]
+    for item in clas_list:
+        if name in item['name'] or name in item['description']:
+            f_list.append(item)
+    context={"filter":f_list}
+    return render (request,'list/list.html',context=context)
+    
+def search2(request):
+    f_list=[]
+    search=request.GET.get('search')
+    
+    for item in clas_list:
+        if search in item['name'] or search in item['description']:
+            f_list.append(item)
+            context={"filter":f_list}
+            return render (request,'list/list2.html',context=context)
+    else:
+        return render(request,'list/notfound.html')

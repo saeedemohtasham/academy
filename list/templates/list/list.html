@@ -8,16 +8,19 @@
         <center>
             <table width="60%">
                 {% for item in filter%}
-                    {% if forloop.counter0|divisibleby:"3" %}
+                    {% if forloop.counter0|divisibleby:"2" %}
                         <tr>
                     {%endif%}
                             <td width="33%">
-                                <div style="margin: 0px 20px background-color: rgba(0,0,0,0.6)">
+                                <div class="box" >
                                     <p>{{item.name}}</p>
+                                    <p> time_in:{{item.time_in}}</p>
+                                    <p>time_out:{{item.time_out}}</p>
+                                    <p> {{item.description}}</P>
 
                                 </div>
                             </td>
-                    {% if forloop.counter|divisibleby:"3" %}
+                    {% if forloop.counter|divisibleby:"2" %}
                         </tr>
                     {%endif%}
                 {%endfor%}
@@ -31,3 +34,12 @@
 
 
 </html>
+<style>
+    .box{
+        border: 5px solid ;
+        background-color:#eee;
+        padding:15px;
+        box-shadow:2px 4px 6px rgba(0,0,0,0.6);
+        margin-bottom:10px;
+    }
+</style>

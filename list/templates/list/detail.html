@@ -1,13 +1,38 @@
-{% extends "layout.html" %}
-{%block content%}
-    <div class="navbar">
-        <a style="font_size:20px"href=""> خانه</a>
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> لیست دوره ها</title>
+        <link rel="stylesheet" href="{% static 'list/style.css' %}">
+    </head>
+    <body>
         <center>
-            <span style:"font_size:20px" > آموزشگاه ایلیا</span>
+            <table width="60%">
+                {% for item in filter%}
+                    {% if forloop.counter0|divisibleby:"3" %}
+                        <tr>
+                    {%endif%}
+                            <td width="33%">
+                                <div class="box" style="margin: 0px 20px background-color: rgba(0,0,0,0.6)">
+                                    <p>{{item.name}}</p>
+                                    <p> time_in:{{item.time_in}}</p>
+                                    <p>time_out:{{item.time_out}}</p>
+
+                                </div>
+                            </td>
+                    {% if forloop.counter|divisibleby:"3" %}
+                        </tr>
+                    {%endif%}
+                {%endfor%}
+            </table>
         </center>
 
-    </div>
-{% endblock %}
-{%block title %}
-جزییات دوره 
-{%block title %}
+           
+    </body>
+
+
+
+
+</html>
+<style>
