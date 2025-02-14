@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'vazir';
+    src: url('../fonts/vazir.ttf') format('truetype');
+}
+body{ 
+    font-family:'vazir';
+}

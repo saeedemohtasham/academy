@@ -1,7 +1,8 @@
-
+{% load static%}
 <html dir="rtl">
     <head>
         <title>{%block title%} مقدار پیش فرض{%endblock%}</title>
+        <link rel="stylesheet" href={% static "styles/font.css" %}>
         <div class="navbar">
             <a style="font_size:20px"href=" {% url 'list'%}"> خانه</a>
         
