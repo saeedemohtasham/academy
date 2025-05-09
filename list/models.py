@@ -19,7 +19,7 @@ class Course(models.Model):
     #2:در حال برگزاری
     #3:اتمام یافته
     #4:لغو شده
-    status=models.SmallIntegerField(default=1)
+    status=models.BinaryField(default=1)
     is_deleted=models.BooleanField(default=False)
     class Meta():
         db_table="courses"

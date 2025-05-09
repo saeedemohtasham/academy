@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse
 import requests
+from .models import User,Course
 # Create your views here.
 clas_list=[
     {'id':1,'name':'پایتون','time_in':'14:30','time_out':'15','description':'استاد: آقای احمدی، روزهای برگزاری :شنبه و دوشنبه'},
@@ -9,7 +10,18 @@ clas_list=[
     {'id':3,'name':'icdl','time_in':'16:30','time_out':'18','description':'استاد: آقای نیازی، روزهای برگزاری :سه شنبه و پنج شنبه'},
     {'id':4,'name':'هوش مصنوعی','time_in':'16','time_out':'17:30','description':'استاد: خانم امیری، روزهای برگزاری :شنبه و چهارشنبه',}
 ]
-    
+def hello(request):
+    name=request.GET.get('name')
+    family=request.GET.get('family')
+    age=request.GET.get('age')
+    mobile=request.GET.get('mobile')
+    email=request.GET.get('email')
+    user=User(name=name,family=family,age=34,mobile=mobile,email=email) 
+    user.save()  
+    return HttpResponse("hello")
+def list_user(request):
+    person=User.object.all()
+    return render(request ,'list/list3.html')
 def show_list(request):
     data=""
     for item in clas_list:

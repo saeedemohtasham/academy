@@ -9,4 +9,7 @@ urlpatterns = [
     path('search/<name>',views.search),
     path('clas-detail/<name>',views.clas_detail, name="clas-detail"),
     path('search2/',views.search2),
+    path('hello/',views.hello),
+    path('person/',views.list_user),
+    
 ]
